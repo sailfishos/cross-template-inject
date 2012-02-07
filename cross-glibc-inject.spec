@@ -64,7 +64,7 @@ Release:       7
 AutoReqProv:   0
 Provides:      %newname
 
-BuildRequires: rpm grep tar patchelf sed -rpmlint-Moblin -rpmlint-mini -post-build-checks -rpmlint-mini-x86-arm
+BuildRequires: rpm grep tar sed -rpmlint-Moblin -rpmlint-mini -post-build-checks -rpmlint-mini-x86-arm
 BuildRequires: %oldname
 Requires:      %oldname
 # no auto requirements - they're generated

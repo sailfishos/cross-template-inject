@@ -141,7 +141,7 @@ shellquote()
 echo "Creating baselibs_new.conf"
 echo ""
 rm -rRf /tmp/baselibs_new.conf || true
-shellquote "arch %{_target_cpu} targets i486:%{_target_cpu}" >> /tmp/baselibs_new.conf
+shellquote "arch %{_target_cpu} targets i486:%{_target_cpu} x86_64:%{_target_cpu}" >> /tmp/baselibs_new.conf
 
 shellquote "%{name}" >> /tmp/baselibs_new.conf
 shellquote "  targettype x86 block!" >> /tmp/baselibs_new.conf

@@ -1,3 +1,6 @@
+* Tue Feb 24 2014 Carsten Munk <carsten.munk@jollamobile.com> - 1.0
+- Make x86_64 injections too
+
 * Tue Oct 16 2012 Carsten Munk <carsten.munk@jollamobile.com> - 1.0
 - Change from i586 to i486 target
 

@@ -34,16 +34,16 @@
 %define newname cross-%{oldname}-inject
 #
 # The version of the original package is read from its rpm db info
-%{expand:%%define newversion %(rpm --quiet -q --qf '[%{version}]' %oldname || echo 1)}
+%define newversion %{expand:%(rpm --quiet -q %oldname && rpm -q --qf '%%{version}' %oldname || echo '1.0')}
 #
 # The license of the original package is read from its rpm db info
-%{expand:%%define newlicense %(rpm --quiet -q --qf '[%{license}]' %oldname || echo x)}
+%define newlicense %{expand:%(rpm --quiet -q %oldname && rpm -q --qf '%%{license}' %oldname || echo 'UNKOWN')}
 #
 # The group information of the original package
-%{expand:%%define newgroup %(rpm --quiet -q --qf '[%{group}]' %oldname || echo x)}
+%define newgroup %{expand:%(rpm --quiet -q %oldname && rpm -q --qf '%%{group}' %oldname || echo 'UNKNOWN')}
 #
 # The summary of the original package
-%{expand:%%define newsummary %(rpm --quiet -q --qf '[%{summary} - special version ]' %oldname || echo x)}
+%define newsummary %{expand:%(rpm --quiet -q %oldname && rpm -q --qf '%{summary} - special version ' %oldname || echo 'UNKNOWN.')}
 #
 # New rpath to add to files on request
 %define newrpath "/opt/cross/%_target_platform/sys-root/lib:/opt/cross/%_target_platform/sys-root/usr/lib"
@@ -86,6 +86,8 @@ Source20:      libraries_to_prepare
 %if %special_script
 Source30:      special_script
 %endif
+Source100:     files_to_ignore
+Source101:     precheckin.sh
 
 %description
 This is a meta-package providing %name.

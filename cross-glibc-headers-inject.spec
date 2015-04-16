@@ -34,16 +34,16 @@
 %define newname cross-%{oldname}-inject
 #
 # The version of the original package is read from its rpm db info
-%{expand:%%define newversion %(rpm -q --qf '[%{version}]' %oldname)}
+%define newversion %{expand:%(rpm --quiet -q %oldname && rpm -q --qf '%%{version}' %oldname || echo '1.0')}
 #
 # The license of the original package is read from its rpm db info
-%{expand:%%define newlicense %(rpm -q --qf '[%{license}]' %oldname)}
+%define newlicense %{expand:%(rpm --quiet -q %oldname && rpm -q --qf '%%{license}' %oldname || echo 'UNKOWN')}
 #
 # The group information of the original package
-%{expand:%%define newgroup %(rpm -q --qf '[%{group}]' %oldname)}
+%define newgroup %{expand:%(rpm --quiet -q %oldname && rpm -q --qf '%%{group}' %oldname || echo 'UNKNOWN')}
 #
 # The summary of the original package
-%{expand:%%define newsummary %(rpm -q --qf '[%{summary} - special version ]' %oldname)}
+%define newsummary %{expand:%(rpm --quiet -q %oldname && rpm -q --qf '%{summary} - special version ' %oldname || echo 'UNKNOWN.')}
 #
 # New rpath to add to files on request
 %define newrpath "/opt/cross/%_target_platform/sys-root/lib:/opt/cross/%_target_platform/sys-root/usr/lib"
@@ -64,7 +64,12 @@ Release:       7
 AutoReqProv:   0
 Provides:      %newname
 
-BuildRequires: rpm grep tar sed -rpmlint-Moblin -rpmlint-mini -post-build-checks -rpmlint-mini-x86-arm
+BuildRequires: rpm grep tar sed
+#!BuildIgnore: rpmlint-Moblin
+#!BuildIgnore: rpmlint-mini
+#!BuildIgnore: post-build-checks
+#!BuildIgnore: rpmlint-mini-x86-arm
+
 BuildRequires: %oldname
 Requires:      %oldname
 # no auto requirements - they're generated
@@ -81,6 +86,8 @@ Source20:      libraries_to_prepare
 %if %special_script
 Source30:      special_script
 %endif
+Source100:     files_to_ignore
+Source101:     precheckin.sh
 
 %description
 This is a meta-package providing %name.

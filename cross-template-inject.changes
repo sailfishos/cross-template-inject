@@ -1,3 +1,6 @@
+* Fri Apr 17 2015 Islam Amer <islam.amer@jollamobile.com> - 1.0
+- fix spec files parsing in OBS / CI backends MER#895
+
 * Tue Feb 24 2014 Carsten Munk <carsten.munk@jollamobile.com> - 1.0
 - Make x86_64 injections too
 

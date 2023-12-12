@@ -149,6 +149,7 @@ shellquote "arch %{_target_cpu} targets i486:%{_target_cpu} x86_64:%{_target_cpu
 shellquote "%{name}" >> /tmp/baselibs_new.conf
 shellquote "  targettype x86 block!" >> /tmp/baselibs_new.conf
 shellquote "  targettype 32bit block!" >> /tmp/baselibs_new.conf
+shellquote "  targettype 64bit block!" >> /tmp/baselibs_new.conf
 shellquote "  targettype %{_target_cpu} autoreqprov off" >> /tmp/baselibs_new.conf
 shellquote "  targettype %{_target_cpu} targetname cross-%{_target_cpu}-%{oldname} " >> /tmp/baselibs_new.conf
 shellquote "  targettype %{_target_cpu} prefix /opt/cross/%_target_platform/sys-root" >> /tmp/baselibs_new.conf

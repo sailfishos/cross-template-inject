@@ -2,3 +2,4 @@
 /var/cache/ldconfig
 /etc/ld.so.conf.d/meego-accelerator.conf
 /etc/ld.so.cache
+.*pkgconfig

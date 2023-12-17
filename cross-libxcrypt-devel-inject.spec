@@ -21,7 +21,7 @@
 ### only changes here
 #
 # The original package name
-%define oldname glibc
+%define oldname libxcrypt-devel
 #
 ### no changes needed below this line
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

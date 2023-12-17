@@ -39,9 +39,6 @@
 # The license of the original package is read from its rpm db info
 %define newlicense %{expand:%(rpm --quiet -q %oldname && rpm -q --qf '%%{license}' %oldname || echo 'UNKOWN')}
 #
-# The group information of the original package
-%define newgroup %{expand:%(rpm --quiet -q %oldname && rpm -q --qf '%%{group}' %oldname || echo 'UNKNOWN')}
-#
 # The summary of the original package
 %define newsummary %{expand:%(rpm --quiet -q %oldname && rpm -q --qf '%{summary} - special version ' %oldname || echo 'UNKNOWN.')}
 #
@@ -74,7 +71,6 @@ BuildRequires: %oldname
 Requires:      %oldname
 # no auto requirements - they're generated
 License:       %newlicense
-Group:         %newgroup
 Summary:       %newsummary
 BuildRoot:     %{_tmppath}/%{name}-%{version}-build
 %if %binaries_to_prepare
@@ -153,6 +149,7 @@ shellquote "arch %{_target_cpu} targets i486:%{_target_cpu} x86_64:%{_target_cpu
 shellquote "%{name}" >> /tmp/baselibs_new.conf
 shellquote "  targettype x86 block!" >> /tmp/baselibs_new.conf
 shellquote "  targettype 32bit block!" >> /tmp/baselibs_new.conf
+shellquote "  targettype 64bit block!" >> /tmp/baselibs_new.conf
 shellquote "  targettype %{_target_cpu} autoreqprov off" >> /tmp/baselibs_new.conf
 shellquote "  targettype %{_target_cpu} targetname cross-%{_target_cpu}-%{oldname} " >> /tmp/baselibs_new.conf
 shellquote "  targettype %{_target_cpu} prefix /opt/cross/%_target_platform/sys-root" >> /tmp/baselibs_new.conf

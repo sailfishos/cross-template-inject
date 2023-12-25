@@ -107,7 +107,7 @@ for i in `cat %{_sourcedir}/files_to_ignore`; do
  sed -e "s#^${i}.*##" -i filestoinclude1 
 done
 %endif
-tar -T filestoinclude1 -cpf - | ( cd %buildroot && tar -xvpf - )
+tar -v -T filestoinclude1 -cpf - | ( cd %buildroot && tar -xvpf - )
 find %buildroot >  filestoinclude2
 cat filestoinclude2 | sed -e "s#%{buildroot}##g" | uniq | sort > filestoinclude
 %if %binaries_to_prepare
@@ -127,8 +127,12 @@ echo "[ .oO Executing special script Oo. ]"
 echo ""
 %endif
 
-echo "[ .oO Files to include: Oo. ]"
+echo "[ .oO filestoinclude1: Oo. ]"
 cat filestoinclude1
+echo "[ .oO filestoinclude2: Oo. ]"
+cat filestoinclude2
+echo "[ .oO Files in /lib: Oo. ]"
+ls -lR /lib/
 echo "[ .oO Files in buildroot: Oo. ]"
 ls -lR %buildroot/
 

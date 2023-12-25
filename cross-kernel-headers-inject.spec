@@ -127,6 +127,11 @@ echo "[ .oO Executing special script Oo. ]"
 echo ""
 %endif
 
+echo "[ .oO Files to include: Oo. ]"
+cat filestoinclude1
+echo "[ .oO Files in buildroot: Oo. ]"
+ls -lR %buildroot/
+
 # lets start the shellquote nightmare ;)
 shellquote()
 {

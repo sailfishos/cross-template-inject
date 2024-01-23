@@ -22,6 +22,7 @@
 #
 # The original package name
 %define oldname libxcrypt-devel
+%define oldrealname libxcrypt-devel
 #
 ### no changes needed below this line
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -34,13 +35,13 @@
 %define newname cross-%{oldname}-inject
 #
 # The version of the original package is read from its rpm db info
-%define newversion %{expand:%(rpm --quiet -q %oldname && rpm -q --qf '%%{version}' %oldname || echo '1.0')}
+%define newversion %{expand:%(rpm --quiet -q %oldrealname && rpm -q --qf '%%{version}' %oldrealname || echo '1.0')}
 #
 # The license of the original package is read from its rpm db info
-%define newlicense %{expand:%(rpm --quiet -q %oldname && rpm -q --qf '%%{license}' %oldname || echo 'UNKOWN')}
+%define newlicense %{expand:%(rpm --quiet -q %oldrealname && rpm -q --qf '%%{license}' %oldrealname || echo 'UNKOWN')}
 #
 # The summary of the original package
-%define newsummary %{expand:%(rpm --quiet -q %oldname && rpm -q --qf '%{summary} - special version ' %oldname || echo 'UNKNOWN.')}
+%define newsummary %{expand:%(rpm --quiet -q %oldrealname && rpm -q --qf '%{summary} - special version ' %oldrealname || echo 'UNKNOWN.')}
 #
 # New rpath to add to files on request
 %define newrpath "/opt/cross/%_target_platform/sys-root/lib:/opt/cross/%_target_platform/sys-root/usr/lib"
@@ -89,7 +90,7 @@ Source101:     precheckin.sh
 This is a meta-package providing %name.
 It is not intended to be used in a normal System!
 Original description:
-%{expand:%(rpm -q --qf '[%{description}]' %oldname)}
+%{expand:%(rpm -q --qf '[%{description}]' %oldrealname)}
 
 
 
@@ -100,7 +101,7 @@ Original description:
 %install
 set +x
 mkdir -p %buildroot
-rpm -ql %oldname > filestoinclude1
+rpm -ql %oldrealname > filestoinclude1
 %if %files_to_ignore
 for i in `cat %{_sourcedir}/files_to_ignore`; do
  echo "Ignoring file: $i"

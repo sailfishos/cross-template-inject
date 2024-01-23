@@ -1,3 +1,6 @@
+* Tue Jan 23 2024 Matti Lehtimäki <matti.lehtimaki@jolla.com> - 1.0
+- Use linux-glibc-devel as real package name for in kernel-headers build. JB#59595
+
 * Sun Dec 17 2023 Matti Lehtimäki <matti.lehtimaki@jolla.com> - 1.0
 - Add cross packages for libxcrypt. JB#60722
 - Block 64bit targettype

@@ -149,6 +149,7 @@ shellquote "arch %{_target_cpu} targets i486:%{_target_cpu} x86_64:%{_target_cpu
 
 shellquote "%{name}" >> /tmp/baselibs_new.conf
 shellquote "  targettype x86 block!" >> /tmp/baselibs_new.conf
+shellquote "  targettype x86_64 block!" >> /tmp/baselibs_new.conf
 shellquote "  targettype 32bit block!" >> /tmp/baselibs_new.conf
 shellquote "  targettype 64bit block!" >> /tmp/baselibs_new.conf
 shellquote "  targettype %{_target_cpu} autoreqprov off" >> /tmp/baselibs_new.conf
@@ -174,11 +175,7 @@ echo ""
 sleep 2
 set -x
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files -f filestoinclude
-%defattr(-,root,root)
 %if %binaries_to_prepare
 /%{_prefix}/share/applybinary/%name
 %endif
